@@ -11,8 +11,6 @@ class DiscountFitOptions:
     """Options for how the fit procedure should run.
     """
     def __init__(self):
-        self.initial_yield = 0.01
-        """The yield to initially construct the discount curve with."""
         self.knot_count = 5
         """The number of knots to use in the cubic splite fit."""
         self.extenion_days = 100
@@ -79,9 +77,7 @@ def fit_discount_curve(bonds: List[FixedRateACGB],
     cv_end_yr_frac = _date_to_year_fraction_act_365(today, curve_end)
 
     knot_locations = linspace(cv_start_yr_frac, cv_end_yr_frac, options.knot_count)
-
-        
-    #fixme
+    
     initial_guess = [0.01] * options.knot_count
     
     def _resid(knots):
